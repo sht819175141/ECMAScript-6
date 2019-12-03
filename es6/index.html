@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .Ball {
+            position: absolute;
+            border-radius: 100%;
+        }
+    </style>
+</head>
+<body>
+    <script src="index.js"></script>
+    <script>
+        function randomColor(){
+            var acc=["A","B","C","D","E","F","0","1","2","3","4","5","6","7","8","9"];
+            var str="#";
+            for(var i=6;i;i--) {
+                str+=acc[random(0,acc.length)];
+            }
+            return str;
+        }
+        function random(min,max){
+            return Math.floor(Math.random()*(max-min+1))+min;
+        }
+        function create(num) {
+            for (var i = 0; i < num; i++) {
+                new Ball(400,200,random(10,100),randomColor(),random(-9, 9),random(-8, 8))
+            }
+        }
+        create(20)
+    </script>
+<!--<script>
+    function Ball(x, y, r, bg,speedx,speedy) {
+        this.x = x;
+        this.y = y;
+        this.bg = bg;
+        this.r = r;
+        this.speedx=speedx;
+        this.speedy=speedy;
+        this.winW=document.documentElement.clientWidth;
+        this.winH=document.documentElement.clientHeight;
+        this.init();
+    }
+    Ball.prototype = {
+        create: function () {
+            var ele = document.createElement("div");
+            ele.className = "Ball";
+            this.ele=ele;
+            this.setStyle();
+        },
+        setStyle:function() {
+            this.ele.style.cssText="width:"+this.r*2+"px;height:"+this.r*2+"px;left:"+(this.x-this.r)+"px;top:"+(this.y-this.r)+"px;background:"+this.bg+";"
+
+        },
+        move:function(){
+            setInterval(function(){
+                if(this.x-this.r<0 || this.x+this.r>this.winW){
+                     this.speedx*=-1;
+                }
+                if(this.y-this.r<0 || this.y+this.r>this.winH){
+                    this.speedy*=-1;
+                }
+                this.x+=this.speedx;
+                this.y+=this.speedy;
+                this.setStyle();
+            }.bind(this),1000/60)
+        },
+        init:function(){
+            this.create();
+            document.body.appendChild(this.ele);
+            this.move();
+        }
+    }
+    function randomColor(){
+        var acc=["A","B","C","D","E","F","0","1","2","3","4","5","6","7","8","9"];
+        var str="#";
+        for(var i=6;i;i&#45;&#45;) {
+            str+=acc[random(0,acc.length)];
+        }
+        return str;
+    }
+    function random(min,max){
+       return Math.floor(Math.random()*(max-min+1))+min;
+    }
+    function create(num) {
+        for (var i = 0; i < num; i++) {
+            new Ball(400,200,random(10,100),randomColor(),random(-9, 9),random(-8, 8))
+        }
+    }
+    create(20)
+</script>-->
+</body>
+</html>

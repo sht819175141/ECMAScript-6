@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<button>点击</button>
+	<script>
+		let name = 'Scott';
+		let greeting = `hello ${name}`;
+		console.log(greeting);
+		let aa=122;
+		{
+			let aa=55;
+			console.log(aa)
+		}
+		console.log(aa)
+		var a = [];
+		for (let i = 0; i < 10; i++) {
+			a[i] = function () {
+				console.log(i);
+			};
+		}
+		a[6]();
+		a[2]();
+		a[1]();
+
+		for(var i=0;i<4;i++){
+			var i=5;
+			console.log(i)
+		}
+		let btn=document.getElementsByTagName("button")[0];
+		btn.onclick=function(){
+			let arr=25;
+			console.log(arr)
+		}
+		let x=1,y=2;
+		/*y=x;
+		x=y+x;*/
+		y=x-y;
+		x=x-y;
+		y=x+y;
+		console.log(x+","+y)
+
+		/*var tmp = 123;
+		if (true) {
+			tmp = 'abc';
+			let tmp;
+		}*/
+
+		console.log(9007199254740992 === 9007199254740993)
+	</script>
+</body>
+</html>
