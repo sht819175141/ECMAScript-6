@@ -1,10 +1,10 @@
 
-export class City{
-    constructor(options){
+export class City {
+    constructor(options) {
         const defaults = {
-            data:[]
+            data: []
         };
-        const opt = Object.assign({},defaults,options);
+        const opt = Object.assign({}, defaults, options);
 
         this.opt = opt;
 
@@ -22,22 +22,22 @@ export class City{
 
     }
 
-    render(cityList){
+    render(cityList) {
 
         //render alphabet
         let alphabetWrap = this.alphabetWrap;
         let citiesFrame = this.citiesFrame;
-        let empty_str = '',city_str='';
-        cityList.forEach((value,index)=>{
-            empty_str+=`<span alpha="${value.alpha}">${value.alpha}</span>`;
+        let empty_str = '', city_str = '';
+        cityList.forEach((value, index) => {
+            empty_str += `<span alpha="${value.alpha}">${value.alpha}</span>`;
 
-            city_str+=`<div>
+            city_str += `<div>
                 <div class="split-line" alpha="${value.alpha}">${value.alpha}</div>
                 <ul class="list">
                 ${
-                    value.data.map((item,idx)=>{
-                        return `<li>${item[0]}</li>`
-                    }).join('')
+                value.data.map((item, idx) => {
+                    return `<li>${item[0]}</li>`
+                }).join('')
                 }
                 </ul>
             </div>`;
@@ -47,41 +47,41 @@ export class City{
         citiesFrame.innerHTML = city_str;
     }
 
-    collectCityHeight(){
+    collectCityHeight() {
         let alphaDom = document.querySelectorAll('[alpha]');
         let height_info = {};
-        Array.from(alphaDom).forEach((dom,index)=>{
+        Array.from(alphaDom).forEach((dom, index) => {
             height_info[dom.getAttribute('alpha')] = dom.offsetTop;
-        });    
+        });
         this.heightInfo = height_info;
     }
 
-    bindEvent(){
+    bindEvent() {
 
-        this.cityPlugin.addEventListener('click',(e)=>{
+        this.cityPlugin.addEventListener('click', (e) => {
             let target = e.target;
-            if(target.tagName == 'SPAN'){
+            if (target.tagName == 'SPAN') {
                 this.cityPlugin.scrollTop = this.heightInfo[target.getAttribute('alpha')];
             }
-            if(target.tagName == 'LI'){
-                
+            if (target.tagName == 'LI') {
+
                 this.hide();
                 this.opt.callback(target.innerHTML);
             }
-            
-            if(target.tagName == 'SPAN' && target.classList.contains('back')){
+
+            if (target.tagName == 'SPAN' && target.classList.contains('back')) {
                 this.hide();
             }
-        },false);
+        }, false);
     }
 
-    show(){
+    show() {
         this.cityPlugin.classList.add('plugin-active');
-        this.cityPlugin.scrollTop=0;
+        this.cityPlugin.scrollTop = 0;
     }
 
-    hide(){
-        this.cityPlugin.classList.remove('plugin-active');   
+    hide() {
+        this.cityPlugin.classList.remove('plugin-active');
     }
 }
 
